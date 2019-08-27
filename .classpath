@@ -28,24 +28,24 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="src/main/resources/wspdevops/ojdbc8.jar"/>
-	<classpathentry exported="true" kind="lib" path="src/main/resources/wspdevops/ons.jar"/>
-	<classpathentry exported="true" kind="lib" path="src/main/resources/wspdevops/oraclepki.jar"/>
-	<classpathentry exported="true" kind="lib" path="src/main/resources/wspdevops/orai18n.jar"/>
-	<classpathentry exported="true" kind="lib" path="src/main/resources/wspdevops/osdt_cert.jar"/>
-	<classpathentry exported="true" kind="lib" path="src/main/resources/wspdevops/osdt_core.jar"/>
-	<classpathentry exported="true" kind="lib" path="src/main/resources/wspdevops/simplefan.jar"/>
-	<classpathentry exported="true" kind="lib" path="src/main/resources/wspdevops/ucp.jar"/>
-	<classpathentry exported="true" kind="lib" path="src/main/resources/wspdevops/xdb.jar"/>
 	<classpathentry kind="lib" path="C:/Users/choshika/.m2/repository/com/jayway/jsonpath/json-path/2.2.0/json-path-2.2.0.jar" sourcepath="C:/Users/choshika/.m2/repository/com/jayway/jsonpath/json-path/2.2.0/json-path-2.2.0-sources.jar">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="test" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="maven.groupId" value="com.jayway.jsonpath"/>
 			<attribute name="maven.artifactId" value="json-path"/>
 			<attribute name="maven.version" value="2.2.0"/>
 			<attribute name="maven.scope" value="test"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="src/main/resources/oraclejavasoapkubernetes/ojdbc8.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/resources/oraclejavasoapkubernetes/ons.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/resources/oraclejavasoapkubernetes/oraclepki.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/resources/oraclejavasoapkubernetes/orai18n.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/resources/oraclejavasoapkubernetes/osdt_cert.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/resources/oraclejavasoapkubernetes/osdt_core.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/resources/oraclejavasoapkubernetes/simplefan.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/resources/oraclejavasoapkubernetes/ucp.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/resources/oraclejavasoapkubernetes/xdb.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
