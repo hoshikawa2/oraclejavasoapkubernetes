@@ -9,7 +9,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 public class StudentEndpoint
 {
-    private static final String NAMESPACE_URI = "https://www.howtodoinjava.com/xml/school";
+    private static final String NAMESPACE_URI = "http://www.howtodoinjava.com/xml/school";
  
     private StudentRepository StudentRepository;
  
