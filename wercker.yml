@@ -12,7 +12,7 @@ box: debian
 build:
   box: maven:3.5.2-jdk-8
   steps:
-    - java/maven:
+    - wercker/maven:
       goals: clean install
       settings: pom.xml
 
