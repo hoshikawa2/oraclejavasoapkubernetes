@@ -14,8 +14,9 @@ build:
   steps:
     - wercker/maven:
       goals: clean install
-      settings: pom.xml
-
+#      settings: pom.xml
+      settings: my-settings.xml
+      profiles: prod
 push:
   box:
       id: openjdk
