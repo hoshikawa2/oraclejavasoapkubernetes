@@ -1,0 +1,66 @@
+# This references a standard debian container from the 
+# Docker Hub https://registry.hub.docker.com/_/debian/
+# Read more about containers on our dev center
+# http://devcenter.wercker.com/docs/containers/index.html
+box: debian
+# You can also use services such as databases. Read more on our dev center:
+# http://devcenter.wercker.com/docs/services/index.html
+
+# This is the build pipeline. Pipelines are the core of wercker 
+# Read more about pipelines on our dev center
+# http://devcenter.wercker.com/docs/pipelines/index.html
+build:
+  box: maven:3.5.2-jdk-8
+  steps:
+    - java/maven:
+      goals: clean install
+      settings: pom.xml
+
+push:
+  box:
+      id: openjdk
+      tag: 8-jre-alpine
+      cmd: /bin/sh
+  steps:
+    - internal/docker-push:
+        username: $DOCKER_USERNAME
+        password: $OCI_AUTH_TOKEN
+        repository: $DOCKER_REGISTRY/$DOCKER_REPO
+        registry: https://$DOCKER_REGISTRY/v2
+        tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
+        entrypoint: java -Djava.security.egd=file:/dev/./urandom -jar /pipeline/source/target/wspdevops-0.0.1-SNAPSHOT.jar 
+
+#Deploy our container from the Oracle Container Registry to the Oracle Container Engine (Kubernetes)
+deploy-to-cluster:
+  box:
+      id: alpine
+      cmd: /bin/sh
+
+  steps:
+
+  - bash-template
+
+  - kubectl:
+      name: delete secret
+      server: $KUBERNETES_MASTER
+      token: $KUBERNETES_AUTH_TOKEN
+      insecure-skip-tls-verify: true
+      command: delete secret wercker; echo delete registry secret
+
+  - kubectl:
+      name: create secret
+      server: $KUBERNETES_MASTER
+      token: $KUBERNETES_AUTH_TOKEN
+      insecure-skip-tls-verify: true
+      command: create secret docker-registry wercker --docker-server=$DOCKER_REGISTRY --docker-email=nobody@oracle.com --docker-username=$DOCKER_USERNAME --docker-password='$OCI_AUTH_TOKEN'; echo create registry secret
+
+  - script:
+      name: "Visualise Kubernetes config"
+      code: cat kubernetes.yml
+
+  - kubectl:
+      name: deploy to kubernetes
+      server: $KUBERNETES_MASTER
+      token: $KUBERNETES_AUTH_TOKEN
+      insecure-skip-tls-verify: true
+      command: apply -f $WERCKER_ROOT/kubernetes.yml
