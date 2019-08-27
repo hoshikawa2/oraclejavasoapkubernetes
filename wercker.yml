@@ -14,8 +14,7 @@ build:
   steps:
     - wercker/maven:
       goals: clean install
-#      settings: pom.xml
-      settings: my-settings.xml
+      settings: pom.xml
       profiles: prod
 push:
   box:
