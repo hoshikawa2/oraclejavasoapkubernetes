@@ -152,9 +152,10 @@
 					</execution>
 				</executions>
 				<configuration>
-					<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
-					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-					<clearOutputDir>false</clearOutputDir>
+				  <sources>
+				     <source>${basedir}/src/main/java/oraclejavasoapkubernetes/student.xsd</source>
+				     <source>${basedir}/src/main/java/school.xsd</source>
+				 </sources>
 				</configuration>
 			</plugin>
 
