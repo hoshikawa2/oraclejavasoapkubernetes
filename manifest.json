@@ -2,7 +2,7 @@
   "runtime" : {
     "majorVersion" : "8"
   },
-  "command" : "java -jar wspdevops-0.0.1-SNAPSHOT.jar",
+  "command" : "java -jar oraclejavasoapkubernetes-0.0.1-SNAPSHOT.jar",
   "release" : {
     "version" : "1.2.3"
   },

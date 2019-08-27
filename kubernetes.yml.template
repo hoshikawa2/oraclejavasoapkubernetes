@@ -1,26 +1,26 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: wspdevops-v1
+  name: oraclejavasoapkubernetes-v1
   labels:
     commit: ${WERCKER_GIT_COMMIT}
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: wspdevops
+      app: oraclejavasoapkubernetes
   template:
     metadata:
       labels:
-        app: wspdevops
+        app: oraclejavasoapkubernetes
         commit: ${WERCKER_GIT_COMMIT}
     spec:
       containers:
-      - name: wspdevops
+      - name: oraclejavasoapkubernetes
         image: ${DOCKER_REGISTRY}/${DOCKER_REPO}:${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
         imagePullPolicy: Always
         ports:
-        - name: wspdevops
+        - name: oraclejavasoapkubernetes
           containerPort: 8080
           protocol: TCP
       imagePullSecrets:
@@ -29,15 +29,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wspdevops
+  name: oraclejavasoapkubernetes
   labels:
-    app: wspdevops
+    app: oraclejavasoapkubernetes
     commit: ${WERCKER_GIT_COMMIT}
 spec:
   ports:
   - port: 30000
     targetPort: 8080
   selector:
-    app: wspdevops
+    app: oraclejavasoapkubernetes
   type: LoadBalancer
 ---
