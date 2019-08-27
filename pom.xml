@@ -40,6 +40,22 @@
     <groupId>org.springframework.ws</groupId>
     <artifactId>spring-ws-core</artifactId>
 </dependency>
+
+             <dependency>
+                     <groupId>schemas</groupId>
+                     <artifactId>student.xsd</artifactId>
+                                   <version>1.0</version>
+                                   <scope>system</scope>
+                        <systemPath>${basedir}/src/main/java/oraclejavasoapkubernetes/student.xsd</systemPath>
+              </dependency>
+             <dependency>
+                     <groupId>schemas</groupId>
+                     <artifactId>school.xsd</artifactId>
+                                   <version>1.0</version>
+                                   <scope>system</scope>
+                        <systemPath>${basedir}/src/main/java/school.xsd</systemPath>
+              </dependency>
+
 		
              <dependency>
                      <groupId>oracle.jdbc.pool</groupId>
