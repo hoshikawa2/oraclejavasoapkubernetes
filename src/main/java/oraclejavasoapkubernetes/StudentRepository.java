@@ -14,28 +14,15 @@ public class StudentRepository {
     public void initData() {
          
         Student student = new Student();
-        student.setName("Sajal");
-        student.setStandard(5);
-        student.setAddress("Pune");
+        student.setName("Cristiano");
+        student.setLastName("Hoshikawa");
         students.put(student.getName(), student);
          
         student = new Student();
         student.setName("Kajal");
-        student.setStandard(5);
-        student.setAddress("Chicago");
+        student.setLastName("Huawey");
         students.put(student.getName(), student);
          
-        student = new Student();
-        student.setName("Lokesh");
-        student.setStandard(6);
-        student.setAddress("Delhi");
-        students.put(student.getName(), student);
-         
-        student = new Student();
-        student.setName("Sukesh");
-        student.setStandard(7);
-        student.setAddress("Noida");
-        students.put(student.getName(), student);
     }
  
     public Student findStudent(String name) {

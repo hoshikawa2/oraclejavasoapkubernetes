@@ -20,8 +20,7 @@ targetNamespace="http://www.howtodoinjava.com/xml/school" elementFormDefault="qu
     <xs:complexType name="Student">
         <xs:sequence>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="standard" type="xs:int"/>
-            <xs:element name="address" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
      

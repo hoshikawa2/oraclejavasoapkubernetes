@@ -25,8 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="standard" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="lastName" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,16 +37,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Student", propOrder = {
     "name",
-    "standard",
-    "address"
+    "lastName"
 })
 public class Student {
 
     @XmlElement(required = true)
     protected String name;
-    protected int standard;
     @XmlElement(required = true)
-    protected String address;
+    protected String lastName;
 
     /**
      * Gets the value of the name property.
@@ -77,40 +74,16 @@ public class Student {
      * Gets the value of the standard property.
      * 
      */
-    public int getStandard() {
-        return standard;
+    public String getLastName() {
+        return lastName;
     }
 
     /**
      * Sets the value of the standard property.
      * 
      */
-    public void setStandard(int value) {
-        this.standard = value;
-    }
-
-    /**
-     * Gets the value of the address property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-     * Sets the value of the address property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAddress(String value) {
-        this.address = value;
+    public void setLastName(String value) {
+        this.lastName = value;
     }
 
 }
