@@ -149,6 +149,7 @@
 	</dependencies>
 
 	<build>
+	
 		<plugins>
 
 			<plugin>
@@ -169,8 +170,8 @@
 				</executions>
 				<configuration>
 				  <sources>
-				     <source>${basedir}/src/main/resources/xsd/student.xsd</source>
-				     <source>${basedir}/src/main/resources/xsd/school.xsd</source>
+				     <source>xsd/student.xsd</source>
+				     <source>xsd/school.xsd</source>
 				 </sources>
 				</configuration>
 			</plugin>
