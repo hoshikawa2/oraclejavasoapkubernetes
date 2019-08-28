@@ -39,6 +39,6 @@ public class Config extends WsConfigurerAdapter
     @Bean
     public XsdSchema countriesSchema()
     {
-        return new SimpleXsdSchema(new ClassPathResource("school.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("xsd/school.xsd"));
     }
 }
