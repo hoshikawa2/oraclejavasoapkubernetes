@@ -169,7 +169,8 @@
 					</execution>
 				</executions>
 				<configuration>
-					<schemaDirectory>/src/main/resources/xsd</schemaDirectory>
+					<schemaDirectory>src/main/resources/xsd</schemaDirectory>
+ 					<schemaFiles>school.xsd</schemaFiles>
 					<clearOutputDir>false</clearOutputDir>
 				</configuration>
 			</plugin>
