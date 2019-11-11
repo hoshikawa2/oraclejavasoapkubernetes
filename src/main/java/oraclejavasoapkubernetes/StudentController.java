@@ -56,13 +56,6 @@ public class StudentController {
 					try (OracleConnection connection = (OracleConnection) ods.getConnection()) {
 						// Get the JDBC driver name and version
 						DatabaseMetaData dbmd = connection.getMetaData();
-						// System.out.println("Driver Name: " + dbmd.getDriverName());
-						// System.out.println("Driver Version: " + dbmd.getDriverVersion());
-						// Print some connection properties
-						// System.out.println("Default Row Prefetch Value is: " +
-						// connection.getDefaultRowPrefetch());
-						// System.out.println("Database Username is: " + connection.getUserName());
-						// System.out.println();
 						// Perform a database operation
 						student = printStudent(connection, name);
 						// createEmployees(connection);
@@ -70,7 +63,6 @@ public class StudentController {
 
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				System.out.println(e.getMessage());
 			}
 		}
