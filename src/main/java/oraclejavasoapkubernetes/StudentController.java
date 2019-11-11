@@ -104,7 +104,7 @@ public class StudentController {
 
 	// ATP SOURCE-CODE
 	public static Student printStudent(Connection connection, String studentName) throws SQLException {
-		// Statement and ResultSet are AutoCloseable and closed automatically. 
+		// Statement and ResultSet are AutoCloseable and closed automatically.
 		Student student = new Student();
 		try (Statement statement = connection.createStatement()) {
 			try (ResultSet resultSet = statement.executeQuery("select first_name, last_name from students where studentName = '" + studentName + "'")) {
