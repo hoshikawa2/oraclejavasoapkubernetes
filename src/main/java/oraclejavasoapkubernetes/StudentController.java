@@ -24,7 +24,7 @@ import java.sql.DatabaseMetaData;
 @RestController
 public class StudentController {
 
-	public static String msg = System.getenv("MSG");
+	public static String msg = System.getenv("MSG"); 
 
 	final static String DB_URL = "jdbc:oracle:thin:@atp_tpurgent?TNS_ADMIN=/pipeline/source/target/classes/wallet_atp";
 	final static String DB_USER = "admin";
