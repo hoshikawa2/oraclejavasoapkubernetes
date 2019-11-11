@@ -34,7 +34,7 @@ public class StudentController {
 	private final AtomicLong counter = new AtomicLong();
 
 	@RequestMapping("/newStudent")
-	public void newStudent(@RequestParam(value = "name", defaultValue = "World") String name) {
+	public void newStudent(@RequestParam(value = "firstname", defaultValue = "World") String firstName, @RequestParam(value = "lastname", defaultValue = "World") String lastName) {
 
 		Properties info = new Properties();
 		info.put(OracleConnection.CONNECTION_PROPERTY_USER_NAME, DB_USER);
@@ -54,7 +54,7 @@ public class StudentController {
 					// Get the JDBC driver name and version
 					DatabaseMetaData dbmd = connection.getMetaData();
 					// Perform a database operation
-					createStudent(connection, name);
+					createStudent(connection, firstName, lastName);
 					// createEmployees(connection);
 				}
 
@@ -118,7 +118,7 @@ public class StudentController {
 		}
 	}
 
-	public static void createStudent(Connection connection, String name) throws SQLException {
+	public static void createStudent(Connection connection, String firstName, String lastName) throws SQLException {
 		try (Statement statement = connection.createStatement()) {
 			try (ResultSet resultSet = statement
 					.executeQuery("create table students (first_name varchar(255), last_name varchar(255))")) {
@@ -126,7 +126,7 @@ public class StudentController {
 				System.out.println("---------------------");
 			}
 			try (ResultSet resultSet = statement
-					.executeQuery("insert into students (first_name, last_name) values {'" + name + "')")) {
+					.executeQuery("insert into students (first_name, last_name) values {'" + firstName + "','" + lastName + "')")) {
 				System.out.println("student inserted");
 				System.out.println("---------------------");
 			}
