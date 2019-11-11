@@ -33,6 +33,38 @@ public class StudentController {
 	public String template = msg + ", %s!";
 	private final AtomicLong counter = new AtomicLong();
 
+	@RequestMapping("/newStudent")
+	public Student newStudent(@RequestParam(value = "name", defaultValue = "World") String name) {
+
+		Properties info = new Properties();
+		info.put(OracleConnection.CONNECTION_PROPERTY_USER_NAME, DB_USER);
+		info.put(OracleConnection.CONNECTION_PROPERTY_PASSWORD, DB_PASSWORD);
+		info.put(OracleConnection.CONNECTION_PROPERTY_DEFAULT_ROW_PREFETCH, "20");
+
+		// Call to ATP
+		try {
+			OracleDataSource ods = new OracleDataSource();
+
+			if (true) {
+				ods.setURL(DB_URL);
+				ods.setConnectionProperties(info);
+
+				// With AutoCloseable, the connection is closed automatically.
+				try (OracleConnection connection = (OracleConnection) ods.getConnection()) {
+					// Get the JDBC driver name and version
+					DatabaseMetaData dbmd = connection.getMetaData();
+					// Perform a database operation
+					createStudent(connection, name);
+					// createEmployees(connection);
+				}
+
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
 	@RequestMapping("/findStudent")
 	public Student findStudent(@RequestParam(value = "name", defaultValue = "World") String name) {
 
@@ -56,13 +88,6 @@ public class StudentController {
 					try (OracleConnection connection = (OracleConnection) ods.getConnection()) {
 						// Get the JDBC driver name and version
 						DatabaseMetaData dbmd = connection.getMetaData();
-						// System.out.println("Driver Name: " + dbmd.getDriverName());
-						// System.out.println("Driver Version: " + dbmd.getDriverVersion());
-						// Print some connection properties
-						// System.out.println("Default Row Prefetch Value is: " +
-						// connection.getDefaultRowPrefetch());
-						// System.out.println("Database Username is: " + connection.getUserName());
-						// System.out.println();
 						// Perform a database operation
 						student = printStudent(connection, name);
 						// createEmployees(connection);
@@ -70,7 +95,6 @@ public class StudentController {
 
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				System.out.println(e.getMessage());
 			}
 		}
@@ -95,15 +119,18 @@ public class StudentController {
 		}
 	}
 
-	public static void createStudent(Connection connection) throws SQLException {
+	public static void createStudent(Connection connection, String name) throws SQLException {
 		try (Statement statement = connection.createStatement()) {
 			try (ResultSet resultSet = statement
 					.executeQuery("create table students (first_name varchar(255), last_name varchar(255))")) {
 				System.out.println("table students created");
 				System.out.println("---------------------");
 			}
+			try (ResultSet resultSet = statement
+					.executeQuery("insert into students (first_name, last_name) values {'" + name + "')")) {
+				System.out.println("student inserted");
+				System.out.println("---------------------");
+			}
 		}
 	}
-
-
 }
