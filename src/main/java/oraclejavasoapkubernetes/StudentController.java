@@ -24,7 +24,7 @@ import java.sql.DatabaseMetaData;
 @RestController
 public class StudentController {
 
-	public static String msg = System.getenv("MSG");
+	public static String msg = System.getenv("MSG"); 
 
 	final static String DB_URL = "jdbc:oracle:thin:@atp_tpurgent?TNS_ADMIN=/pipeline/source/target/classes/wallet_atp";
 	final static String DB_USER = "admin";
@@ -34,7 +34,7 @@ public class StudentController {
 	private final AtomicLong counter = new AtomicLong();
 
 	@RequestMapping("/newStudent")
-	public Student newStudent(@RequestParam(value = "name", defaultValue = "World") String name) {
+	public void newStudent(@RequestParam(value = "name", defaultValue = "World") String name) {
 
 		Properties info = new Properties();
 		info.put(OracleConnection.CONNECTION_PROPERTY_USER_NAME, DB_USER);
@@ -62,7 +62,6 @@ public class StudentController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 	@RequestMapping("/findStudent")
