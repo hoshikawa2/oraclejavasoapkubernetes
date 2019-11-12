@@ -13,14 +13,10 @@ public class StudentRepository {
     @PostConstruct
     public void initData() {
          
-        Student student = new Student();
-        student.setName("Cristiano");
-        student.setLastName("Hoshikawa");
+        Student student = new Student("Cristiano", "Hoshikawa");
         students.put(student.getName(), student);
          
-        student = new Student();
-        student.setName("Kajal");
-        student.setLastName("Huawey");
+        student = new Student("Kajal", "Huwaey");
         students.put(student.getName(), student);
          
     }

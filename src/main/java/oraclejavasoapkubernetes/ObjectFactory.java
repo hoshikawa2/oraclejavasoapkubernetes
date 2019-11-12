@@ -49,7 +49,7 @@ public class ObjectFactory {
      * 
      */
     public Student createStudent() {
-        return new Student();
+        return new Student("", "");
     }
 
     /**

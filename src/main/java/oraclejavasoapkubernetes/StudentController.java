@@ -26,7 +26,7 @@ public class StudentController {
 
 	public static String msg = System.getenv("MSG"); 
 
-	final static String DB_URL = "jdbc:oracle:thin:@atp_tpurgent?TNS_ADMIN=/pipeline/source/target/classes/wallet_atp";
+	final static String DB_URL = "jdbc:oracle:thin:@atp_high?TNS_ADMIN=./classes/wallet_atp";
 	final static String DB_USER = "admin";
 	final static String DB_PASSWORD = "Oraclecloud#2019";
 
@@ -67,7 +67,7 @@ public class StudentController {
 	@RequestMapping("/findStudent")
 	public Student findStudent(@RequestParam(value = "name", defaultValue = "World") String name) {
 
-		Student student = new Student();
+		Student student;
 		if (true) {
 
 			Properties info = new Properties();
@@ -85,11 +85,8 @@ public class StudentController {
 
 					// With AutoCloseable, the connection is closed automatically.
 					try (OracleConnection connection = (OracleConnection) ods.getConnection()) {
-						// Get the JDBC driver name and version
-						DatabaseMetaData dbmd = connection.getMetaData();
-						// Perform a database operation
-						student = printStudent(connection, name);
-						// createEmployees(connection);
+						// Perform a database operation						
+						return printStudent(connection, name);
 					}
 
 				}
@@ -97,28 +94,30 @@ public class StudentController {
 				System.out.println(e.getMessage());
 			}
 		}
+		return null;
 
+	}
+
+	public Student printStudent(Connection connection, String studentName) throws SQLException {
+		// Statement and ResultSet are AutoCloseable and closed automatically.
+		Student student = null;
+		String name = null;
+		String lastName = null;
+		try (Statement statement = connection.createStatement()) {
+			try (ResultSet resultSet = statement.executeQuery("select first_name, last_name from students where first_name = '" + studentName + "'")) {
+				while (resultSet.next())
+				{
+					System.out.println("Passou aqui!" + resultSet.getString("first_name"));
+					name = resultSet.getString("first_name");
+					lastName = resultSet.getString("last_name");
+					student = new Student(name, lastName);					
+				}
+			}
+		}
 		return student;
 	}
 
-	// ATP SOURCE-CODE
-	public static Student printStudent(Connection connection, String studentName) throws SQLException {
-		// Statement and ResultSet are AutoCloseable and closed automatically.
-		Student student = new Student();
-		try (Statement statement = connection.createStatement()) {
-			try (ResultSet resultSet = statement.executeQuery("select first_name, last_name from students where studentName = '" + studentName + "'")) {
-				System.out.println("FIRST_NAME" + "  " + "LAST_NAME");
-				System.out.println("---------------------");
-				while (resultSet.next())
-					System.out.println(resultSet.getString(1) + " " + resultSet.getString(2) + " ");
-					student.setName(resultSet.getString(1));
-					student.setLastName(resultSet.getString(2));
-					return student;
-			}
-		}
-	}
-
-	public static void createStudent(Connection connection, String firstName, String lastName) throws SQLException {
+	public void createStudent(Connection connection, String firstName, String lastName) throws SQLException {
 		try (Statement statement = connection.createStatement()) {
 			try (ResultSet resultSet = statement
 					.executeQuery("create table students (first_name varchar(255), last_name varchar(255))")) {
