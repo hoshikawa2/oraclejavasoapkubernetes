@@ -28,7 +28,7 @@ public class StudentController {
 
 	final static String DB_URL = "jdbc:oracle:thin:@atp_tpurgent?TNS_ADMIN=/pipeline/source/target/classes/wallet_atp";
 	final static String DB_USER = "admin";
-	final static String DB_PASSWORD = "Oracle123456";
+	final static String DB_PASSWORD = "Oraclecloud#2019";
 
 	public String template = msg + ", %s!";
 	private final AtomicLong counter = new AtomicLong();
