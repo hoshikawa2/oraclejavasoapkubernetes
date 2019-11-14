@@ -108,7 +108,7 @@ public class StudentController {
 			try (ResultSet resultSet = statement.executeQuery("select first_name, last_name from students where first_name = '" + studentName + "'")) {
 				while (resultSet.next())
 				{
-					System.out.println("Encontrei!" + resultSet.getString("first_name"));
+					System.out.println("Achei!" + resultSet.getString("first_name"));
 					name = resultSet.getString("first_name");
 					lastName = resultSet.getString("last_name");
 					student = new Student(name, lastName);					
