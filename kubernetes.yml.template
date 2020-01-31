@@ -1,5 +1,5 @@
 #Pipeline para implantar em OKE 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: javasoap-v1
