@@ -1,4 +1,4 @@
-#Pipeline para implantar em OKE 
+#Pipeline para implantar em OKE  
 apiVersion: apps/v1
 kind: Deployment
 metadata:
